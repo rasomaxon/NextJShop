@@ -23,9 +23,8 @@ header {
   justify-content: space-between;
   background-color: #cef4ac;
   width: 85%;
-	gap: auto;
   height: 88px;
-  padding: 20px;
+	padding: 20px 2%;
 }
 .logo {
   width: 10.5%;
@@ -104,14 +103,15 @@ header {
 .mainContent {
   background-color: #e7f6ff;
   width: 85%;
+	padding: 0 15px;
 }
 .mainContent h1 {
 	font-size: 30px;
 	color: #165c48;
+	margin: 15px;
 }
 .mainContentFunctions {
 	display: flex;
-	margin: 15px;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -203,10 +203,42 @@ header {
   cursor: pointer;
   gap: 5px;
 }
-.greenBtn:hover {
-  background-color: #248f71;
+.btn:hover {
+	filter: brightness(110%);
   gap: 10px;
 }
-.greenBtn:active {
-  background-color: #165c48;
+.btn:active {
+	filter: brightness(90%);
+}
+
+.cartContent {
+	display: flex;
+}
+.cartItems {
+	width: 75%;
+	background-color: #165c48;
+}
+.cartItemsBtns {
+	display: flex;
+	justify-content: space-between;
+	padding: 15px;
+	background-color: #fff;
+	border-radius: 6px;
+}
+.shareBtn {
+	display: flex;
+	background-color: #A7AFE0;
+	font-size: 15px;
+	color: #fff;
+	width: 130px;
+	height: 40px;
+	border-radius: 6px;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	gap: 9px;
+}
+.clearBtn {
+	width: 200px;
+	background-color: #C74545;
 }

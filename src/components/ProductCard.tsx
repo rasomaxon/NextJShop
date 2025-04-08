@@ -34,7 +34,7 @@ export default function ProductCard({
       </Link>
       <button onClick={(e) => { e.stopPropagation(); onAddToCart(product); }} 
 			style={{ width: 190, height: 40 }}
-			className="greenBtn">
+			className="greenBtn btn">
         В корзину
         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1.04169 4.16666H4.16714L6.25077 7.29212" stroke="white" strokeWidth="2" strokeLinecap="round" />
