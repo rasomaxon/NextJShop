@@ -1,12 +1,21 @@
 "use client";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
-export default function Header() {
+type HeaderProps = {
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+};
+
+export default function Header({ searchTerm, setSearchTerm }: HeaderProps) {
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <header>
@@ -34,14 +43,14 @@ export default function Header() {
       </button>
 
       <div className="search">
-        {/* Здесь можно подключить пропсы если нужно взаимодействие с поиском */}
         <input
-          type="search"
+          type="text"
           className="searchField"
           placeholder="Поиск..."
-          disabled
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button className="searchBtn">
+        <button className="searchBtn btn">
           <svg
             width="25"
             height="25"
@@ -65,21 +74,23 @@ export default function Header() {
       </div>
 
       <ul className="headerIcons flex">
-        <li className="userIcon">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 14C16.5774 14 18.6667 11.9107 18.6667 9.33333C18.6667 6.756 16.5774 4.66666 14 4.66666C11.4227 4.66666 9.33337 6.756 9.33337 9.33333C9.33337 11.9107 11.4227 14 14 14Z" stroke="#1f7d63" strokeWidth="2" />
-            <path d="M4.66663 23.3333C4.66663 18.6667 9.33329 16.3333 14 16.3333C18.6666 16.3333 23.3333 18.6667 23.3333 23.3333" stroke="#1f7d63" strokeWidth="2" />
-          </svg>
-        </li>
-        <li className="cartPrice" style={{ cursor: "pointer" }}>
-          <Link href="/cart" className="flex items-center gap-2">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1.04169 4.16666H4.16714L6.25077 7.29212" stroke="#1f7d63" strokeWidth="2" strokeLinecap="round" />
-              <path d="M6.25 7.29166H19.7917L18.2292 16.6667H7.8125L6.25 7.29166Z" stroke="#1f7d63" strokeWidth="2" />
-              <path d="M9.37523 22.3963C10.2383 22.3963 10.938 21.6966 10.938 20.8336C10.938 19.9705 10.2383 19.2708 9.37523 19.2708C8.51216 19.2708 7.8125 19.9705 7.8125 20.8336C7.8125 21.6966 8.51216 22.3963 9.37523 22.3963Z" fill="#1f7d63" />
-              <path d="M17.7085 22.3963C18.5716 22.3963 19.2713 21.6966 19.2713 20.8336C19.2713 19.9705 18.5716 19.2708 17.7085 19.2708C16.8455 19.2708 16.1458 19.9705 16.1458 20.8336C16.1458 21.6966 16.8455 22.3963 17.7085 22.3963Z" fill="#1f7d63" />
-            </svg>
-            <p className="price">{totalPrice.toFixed(2)} $</p>
+        <li className="userIcon btn greenBtn">
+					<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12.5 12.5C14.8012 12.5 16.6667 10.6345 16.6667 8.33333C16.6667 6.03214 14.8012 4.16666 12.5 4.16666C10.1989 4.16666 8.33337 6.03214 8.33337 8.33333C8.33337 10.6345 10.1989 12.5 12.5 12.5Z" stroke="white" stroke-width="2"/>
+						<path d="M4.16663 20.8333C4.16663 16.6667 8.33329 14.5833 12.5 14.5833C16.6666 14.5833 20.8333 16.6667 20.8333 20.8333" stroke="white" stroke-width="2"/>
+					</svg>
+				</li>
+        <li>
+          <Link href="/cart">
+						<div className="cartIcon btn greenBtn">
+							<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1.04163 4.16667H4.16663L6.24996 7.29167" stroke="white" stroke-width="2" stroke-linecap="round"/>
+								<path d="M6.25 7.29166H19.7917L18.2292 16.6667H7.8125L6.25 7.29166Z" stroke="white" stroke-width="2"/>
+								<path d="M9.375 22.3958C10.2379 22.3958 10.9375 21.6963 10.9375 20.8333C10.9375 19.9704 10.2379 19.2708 9.375 19.2708C8.51206 19.2708 7.8125 19.9704 7.8125 20.8333C7.8125 21.6963 8.51206 22.3958 9.375 22.3958Z" fill="white"/>
+								<path d="M17.7084 22.3958C18.5713 22.3958 19.2709 21.6963 19.2709 20.8333C19.2709 19.9704 18.5713 19.2708 17.7084 19.2708C16.8454 19.2708 16.1459 19.9704 16.1459 20.8333C16.1459 21.6963 16.8454 22.3958 17.7084 22.3958Z" fill="white"/>
+							</svg>
+							<p>{totalPrice.toFixed(2)} $</p>
+						</div>
           </Link>
         </li>
       </ul>

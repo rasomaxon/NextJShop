@@ -6,6 +6,9 @@ interface CartItem {
   title: string; // Название товара
   quantity: number; // Количество товара в корзине
   price: number; // Цена товара
+  description: string;
+  category: string;
+  image: string;
 }
 
 // Интерфейс состояния корзины
@@ -23,31 +26,48 @@ const cartSlice = createSlice({
   name: "cart", // Название слайса
   initialState, // Начальное состояние
   reducers: {
-    // Редьюсер для добавления товара в корзину
-    addToCart: (state, action: PayloadAction<CartItem>) => {
-      const item = state.items.find(i => i.id === action.payload.id); // Ищем товар в корзине по ID
-      if (item) {
-        // Если товар уже есть в корзине, увеличиваем его количество
-        item.quantity += action.payload.quantity;
-      } else {
-        // Если товара нет в корзине, добавляем его
-        state.items.push(action.payload);
-      }
-    },
-    // Редьюсер для удаления товара из корзины
-    removeFromCart: (state, action: PayloadAction<number>) => {
-      // Фильтруем корзину, оставляем только те товары, у которых ID не совпадает с переданным
-      state.items = state.items.filter(i => i.id !== action.payload);
-    },
-    // Редьюсер для очистки корзины
-    clearCart: (state) => {
-      state.items = []; // Очищаем корзину
-    },
+	addToCart: (state, action: PayloadAction<Product>) => {
+		const item = state.items.find((i) => i.id === action.payload.id);
+		if (item) {
+			if (item.quantity < 99) {
+				item.quantity += 1;
+			}
+		} else {
+			state.items.push({ ...action.payload, quantity: 1 });
+		}
+	},
+  removeFromCart: (state, action: PayloadAction<number>) => {
+    state.items = state.items.filter(i => i.id !== action.payload);
   },
-});
+  clearCart: (state) => {
+    state.items = [];
+  },
+	increaseQuantity: (state, action: PayloadAction<number>) => {
+		const item = state.items.find((item) => item.id === action.payload);
+		if (item && item.quantity < 99) {
+			item.quantity += 1;
+		}
+	},
+  decreaseQuantity: (state, action: PayloadAction<number>) => {
+    const item = state.items.find(i => i.id === action.payload);
+    if (item) {
+      item.quantity -= 1;
+      if (item.quantity <= 0) {
+        state.items = state.items.filter(i => i.id !== action.payload);
+      }
+    }
+  }
+}});
 
 // Экспортируем действия (action creators), которые будут использоваться в компонентах
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  clearCart,
+  increaseQuantity,
+  decreaseQuantity,
+} = cartSlice.actions;
+
 
 // Экспортируем редьюсер, который будет добавлен в хранилище Redux
 export default cartSlice.reducer;

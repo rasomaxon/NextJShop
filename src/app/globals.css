@@ -39,12 +39,6 @@ header {
 	display: flex;
 	width: 60%;
 }
-.search:focus-within svg {
-	width: 30px;
-	height: 30px;
-	transform: translateX(-4px);
-	transition: width 0.1s ease, height 0.1s ease, transform 0.1s ease;
-}
 .searchField {
   width: 100%;
   height: 50px;
@@ -76,28 +70,21 @@ header {
 	padding-left: 11px;
 	cursor: pointer;
 }
-.searchBtn:active {
-	background-color: #165c48;
-}
-.search:not(:focus-within) .searchBtn:hover svg{
-	width: 30px;
-	height: 30px;
-	transform: translateX(-2px);
-	transition: width 0.1s ease, height 0.1s ease, transform 0.1s ease;
-}
 .headerIcons {
 	display: flex;
-	width: 13%;
+	width: 14%;
 	gap: 20px;
 	justify-content: space-around;
 	align-items: center;
 }
-.cartPrice {
-	display: flex;
-	color: #165c48;
+.userIcon {
+	width: 50px;
+	height: 50px;
+}
+.cartIcon {
+	height: 50px;
+	width: 140px;
 	font-size: 20px;
-	gap: 10px;
-	align-items: center;
 }
 
 .mainContent {
@@ -148,8 +135,6 @@ header {
 	transform: translateY(-50%);
 	transition: transform 0.2s ease;
 }
-
-/* при фокусе поворачиваем стрелку вверх */
 .sortSelect:hover+.customArrow {
 	transform: translateY(-50%) rotate(180deg);
 }
@@ -199,7 +184,6 @@ header {
   background-color: #1f7d63;
   border-radius: 6px;
   color: #fff;
-  font-size: 15px;
   cursor: pointer;
   gap: 5px;
 }
@@ -215,10 +199,9 @@ header {
 	display: flex;
 }
 .cartItems {
-	width: 75%;
-	background-color: #165c48;
+	width: 70%;
 }
-.cartItemsBtns {
+.cartBtns {
 	display: flex;
 	justify-content: space-between;
 	padding: 15px;
@@ -241,4 +224,27 @@ header {
 .clearBtn {
 	width: 200px;
 	background-color: #C74545;
+}
+.cartItemCard {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 150px;
+	padding: 15px;
+	background-color: #fff;
+	border-radius: 6px;
+}
+.cartItemCardText {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
+}
+.deleteCartBtn{
+	width: 30px;
+	height: 30px;
+	background-color: #C74545;
+	color: #fff;
+	border-radius: 6px;
 }
