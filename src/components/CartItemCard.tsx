@@ -53,7 +53,7 @@ export default function CartItemCard({
 					</div>
       	</div>
 			</div>
-      <button className="deleteCartBtn" onClick={() => onRemove(item.id)}>
+      <button className="deleteCartBtn btn greenBtn" onClick={() => onRemove(item.id)}>
         x
       </button>
     </div>

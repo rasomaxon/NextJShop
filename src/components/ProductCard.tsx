@@ -9,11 +9,12 @@ type Product = {
 };
 
 type ProductCardProps = {
-  product: Product;
-  onAddToCart: (product: Product) => void;
-  onIncrease: (id: number) => void;
-  onDecrease: (id: number) => void;
-  quantityInCart: number;
+  product?: Product;
+  onAddToCart?: (product: Product) => void;
+  onIncrease?: (id: number) => void;
+  onDecrease?: (id: number) => void;
+  quantityInCart?: number;
+  isLoading?: boolean;
 };
 
 export default function ProductCard({
@@ -21,8 +22,22 @@ export default function ProductCard({
   onAddToCart,
   onIncrease,
   onDecrease,
-  quantityInCart,
+  quantityInCart = 0,
+  isLoading = false,
 }: ProductCardProps) {
+  if (isLoading) {
+    return (
+      <div className="skeletonCard">
+        <div className="skeletonImage"></div>
+        <div className="skeletonText"></div>
+        <div className="skeletonPrice"></div>
+        <div className="skeletonBtn"></div>
+      </div>
+    );
+  }
+
+  if (!product) return null;
+
   return (
     <div className="itemCard">
       <Link href={`/product/${product.id}`} passHref>
@@ -43,7 +58,7 @@ export default function ProductCard({
         <button
           onClick={(e) => {
             e.stopPropagation();
-            onAddToCart(product);
+            onAddToCart?.(product);
           }}
           style={{ width: 190, height: 40 }}
           className="greenBtn btn"
@@ -61,18 +76,24 @@ export default function ProductCard({
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onDecrease(product.id);
+              onDecrease?.(product.id);
             }}
-            className="btn greenBtn" style={{height:40, width:35}}>
+            className="btn greenBtn"
+            style={{ height: 40, width: 35 }}
+          >
             -
           </button>
-          <span className="btn greenBtn" style={{height:40, width:130}}>{quantityInCart} в корзине</span>
+          <span className="btn greenBtn" style={{ height: 40, width: 130 }}>
+            {quantityInCart} в корзине
+          </span>
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onIncrease(product.id);
+              onIncrease?.(product.id);
             }}
-            className="btn greenBtn" style={{height:40, width:35}}>
+            className="btn greenBtn"
+            style={{ height: 40, width: 35 }}
+          >
             +
           </button>
         </div>

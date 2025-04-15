@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @font-face {
   font-family: "Dodo";
@@ -16,7 +19,6 @@ html {
   margin: 0;
   padding: 0;
 }
-
 header {
   display: flex;
   align-items: center;
@@ -90,7 +92,7 @@ header {
 .mainContent {
   background-color: #e7f6ff;
   width: 85%;
-	padding: 0 15px;
+	padding: 0 15px 15px 15px;
 }
 .mainContent h1 {
 	font-size: 30px;
@@ -147,6 +149,7 @@ header {
   justify-content: center;
 }
 .itemCard {
+	@apply bg-white shadow-md rounded-lg p-4 hover:shadow-xl transition-all;
   width: 200px;
   height: 355px;
   display: flex;
@@ -197,6 +200,7 @@ header {
 
 .cartContent {
 	display: flex;
+	justify-content: space-between;
 }
 .cartItems {
 	width: 70%;
@@ -247,4 +251,60 @@ header {
 	background-color: #C74545;
 	color: #fff;
 	border-radius: 6px;
+}
+.order {
+	width: 29%;
+	height: 350px;
+	background-color: #fff;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+}
+.orderContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 0 15px 15px 15px;
+	flex-grow: 1;
+}
+.cartTotal {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+.cartTotal div{
+	flex: 1;	
+	height: 1px;
+	border-bottom: 1px dashed #A7A7A7;
+	position: relative;
+	bottom: 8px;	
+	margin: 0 6px;
+}
+.AdvantageCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	font-size: 20px;
+	width: 30%;
+	gap: 15px;
+}
+.skeletonCard {
+	@apply bg-gray-200 animate-pulse rounded-lg p-4;
+}
+
+.skeletonImage {
+	@apply bg-gray-300 h-48 w-full rounded-md;
+}
+
+.skeletonText {
+	@apply bg-gray-300 h-6 rounded-md mt-2;
+}
+
+.skeletonPrice {
+	@apply bg-gray-300 h-4 w-24 rounded-md mt-2;
+}
+
+.skeletonBtn {
+	@apply bg-gray-300 h-8 w-32 rounded-md mt-4;
 }
