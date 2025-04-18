@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @font-face {
   font-family: "Dodo";
@@ -307,4 +304,104 @@ header {
 
 .skeletonBtn {
 	@apply bg-gray-300 h-8 w-32 rounded-md mt-4;
+}
+
+.itemCardContent {
+	display: grid;
+	grid-template-columns: 44% 34% 18%;
+	justify-content: space-between;
+	background-color: #fff;
+	margin-top: 15px;
+	padding: 15px;
+	border-radius: 6px;
+}
+
+.image-column {
+	display: flex;
+	gap: 15px;
+}
+
+.thumbnail-container {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.thumbnail {
+	position: relative;
+	width: 80px;
+	height: 100px;
+	object-fit: contain;
+	background-color: #ffffff;
+	border-radius: 6px;
+	transition: all 0.2s ease;
+}
+.thumbnail:hover {
+	transform: scale(1.05);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail-img {
+	object-fit: contain;
+	transition: transform 0.2s ease;
+}
+
+.thumbnail:hover .thumbnail-img {
+	transform: scale(1.05);
+}
+
+.main-image-container {
+	position: relative;
+	flex-grow: 1;
+	min-height: 400px;
+	max-height: 600px;
+}
+
+.main-image {
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+	.itemCardContent {
+		grid-template-columns: 50% 40%;
+		grid-template-areas:
+			"images info"
+			"order order";
+	}
+
+	.image-column {
+		grid-area: images;
+	}
+
+	.info-column {
+		grid-area: info;
+	}
+
+	.order-column {
+		grid-area: order;
+		margin-top: 20px;
+	}
+}
+
+@media (max-width: 768px) {
+	.itemCardContent {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"images"
+			"info"
+			"order";
+	}
+
+	.image-column {
+		flex-direction: column-reverse;
+	}
+
+	.thumbnail-container {
+		flex-direction: row;
+		overflow-x: auto;
+		padding-bottom: 10px;
+	}
 }

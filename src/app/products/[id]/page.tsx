@@ -1,10 +1,9 @@
 "use client";
-// Указывает, что компонент работает на клиенте — обязательно для использования хуков (useEffect, useState, useParams)
-
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation"; // Хук для получения параметров маршрута из адресной строки (в данном случае ID товара)
+import { useParams } from "next/navigation";
+import Image from 'next/image';
+import Header from "@/components/Header";
 
-// Тип данных продукта
 type Product = {
   id: number;
   title: string;
@@ -14,39 +13,94 @@ type Product = {
 };
 
 export default function ProductPage() {
-  const { id } = useParams(); // Получаем параметр маршрута [id] из URL
-  const [product, setProduct] = useState<Product | null>(null); // Состояние для хранения данных продукта
+  const { id } = useParams();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [mainImage, setMainImage] = useState("");
+  const [productImages, setProductImages] = useState<string[]>([]);
+  const discount = 0;
 
-  // Асинхронная функция для получения информации о товаре с сервера
   const fetchProduct = async () => {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+    if (!res.ok) return;
     const data = await res.json();
-    setProduct(data); // Сохраняем полученные данные
+    
+    const images = [
+      data.image,
+      "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+      "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+      "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+      "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg"
+    ];
+
+    setProduct(data);
+    setProductImages(images);
+    setMainImage(images[0]);
   };
 
-  // Вызываем fetch при первом рендере и при изменении id
   useEffect(() => {
-    if (id) {
-      fetchProduct();
-    }
+    if (id) fetchProduct();
   }, [id]);
 
-  // Пока продукт не загрузился — показываем заглушку
-  if (!product) return <div>Loading...</div>;
+  if (!product || productImages.length === 0) return <div>Loading...</div>;
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">{product.title}</h1>
-      <img
-        src={product.image}
-        alt={product.title}
-        className="w-48 h-48 object-cover mb-4"
-      />
-      <p>{product.description}</p>
-      <p className="text-xl font-bold">{product.price} $</p>
-      <button className="px-4 py-2 bg-green-600 text-white rounded mt-4">
-        Добавить в корзину
-      </button>
+    <div className="flex flex-col items-center my-10">
+      <Header />
+      <div className="mainContent">
+        <div className="itemCardContent">
+          {/* Первая колонка - изображения */}
+          <div className="image-column">
+            <div className="thumbnail-container">
+              {productImages.map((image, index) => (
+                <div 
+                  key={index}
+                  onMouseEnter={() => setMainImage(image)}
+                  className={`thumbnail ${mainImage === image ? "active" : ""}`}
+                >
+                  <Image
+                    src={image}
+                    alt={`${product.title} variant ${index}`}
+                    fill
+                    className="thumbnail-img"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="main-image-container">
+              <Image
+                src={mainImage}
+                alt={product.title}
+                fill
+                className="main-image"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Вторая колонка - информация */}
+          <div className="info-column">
+            <h1 className="product-title" style={{fontSize:40}}>{product.title}</h1>
+            <p className="product-description">{product.description}</p>
+          </div>
+
+          {/* Третья колонка - заказ */}
+          <div className="order-column">
+            <div className="price-row">
+              <span>Цена:</span>
+              <span>{product.price} $</span>
+            </div>
+            {discount > 0 && (
+              <div className="discount-row">
+                <span>Скидка:</span>
+                <span>-{discount} $</span>
+              </div>
+            )}
+            <button className="add-to-cart">Добавить в корзину</button>
+            <button className="buy-now">Купить сейчас</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

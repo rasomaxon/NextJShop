@@ -53,9 +53,10 @@ export default function CartPage() {
             </div>
 
             {cartItems.length === 0 ? (
-              <p>
-                Корзина пуста. <Link href="/">Перейти в магазин</Link>
-              </p>
+							<div className='flex flex-col justify-center'>
+								<p>Корзина пуста.</p>
+								<Link className='greenBtn btn' href="/">Перейти в магазин</Link>
+							</div>
             ) : (
               <ul className="cartItemsContainer flex flex-col gap-4">
                 {cartItems.map((item) => (
@@ -90,17 +91,17 @@ export default function CartPage() {
 							<div className='cartTotal'>
 								<span>Сумма</span>
 								<div></div>
-								<span>54.33 $</span>
+								<span>{totalPrice.toFixed(2)} $</span>
 							</div>
 							<div className='cartTotal'>
 								<span>Скидка</span>
 								<div></div>
-								<span style={{color:"#C74545"}}>{discount} $</span>
+								<span style={{color:"#C74545"}}>{discount.toFixed(2)} $</span>
 							</div>
 							<div className='cartTotal'>
 								<span style={{fontSize:20}}>ИТОГО:</span>
 								<div></div>
-								<span style={{fontSize:20, color:"#1f7d63", marginTop:30}}>{totalPrice.toFixed(2) - discount} $</span>
+								<span style={{fontSize:20, color:"#1f7d63", marginTop:30}}>{(totalPrice.toFixed(2) - discount).toFixed(2)} $</span>
 							</div>
             </div>
           </div>

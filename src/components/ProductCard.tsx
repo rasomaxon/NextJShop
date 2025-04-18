@@ -40,7 +40,7 @@ export default function ProductCard({
 
   return (
     <div className="itemCard">
-      <Link href={`/product/${product.id}`} passHref>
+      <Link href={`/products/${product.id}`} passHref>
         <div style={{ cursor: 'pointer' }}>
           <Image
             className="itemCard_img"

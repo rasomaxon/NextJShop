@@ -69,8 +69,6 @@ export default function HomePage() {
 							: "Все товары"}
 					</h1>
 
-
-
           <div className="customSelectWrapper">
             <select
               value={sortOrder}
@@ -90,22 +88,21 @@ export default function HomePage() {
 					{loading
 						? Array.from({ length: 18 }).map((_, idx) => <ProductCardSkeleton key={idx} />)
 						: filteredAndSortedProducts.map((product) => {
-								const itemInCart = cartItems.find((item) => item.id === product.id);
-								const quantityInCart = itemInCart ? itemInCart.quantity : 0;
+							const itemInCart = cartItems.find((item) => item.id === product.id);
+							const quantityInCart = itemInCart ? itemInCart.quantity : 0;
 
-								return (
-									<ProductCard
-										key={product.id}
-										product={product}
-										quantityInCart={quantityInCart}
-										onAddToCart={handleAddToCart}
-										onIncrease={handleIncrease}
-										onDecrease={handleDecrease}
-									/>
-								);
-							})}
+							return (
+								<ProductCard
+									key={product.id}
+									product={product}
+									quantityInCart={quantityInCart}
+									onAddToCart={handleAddToCart}
+									onIncrease={handleIncrease}
+									onDecrease={handleDecrease}
+								/>
+							);
+						})}
 				</div>
-
 
 				<div className='ourAdvantages'>
 					<h1 className="text-2xl font-bold mb-4"  style={{color:"#1f7d63"}}>Наши плюсы</h1>
