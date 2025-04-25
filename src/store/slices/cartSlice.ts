@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"; // Импортируем необходимые функции из Redux Toolkit
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Интерфейс для элемента корзины
 interface CartItem {

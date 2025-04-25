@@ -75,10 +75,12 @@ export default function Header({ searchTerm, setSearchTerm }: HeaderProps) {
 
       <ul className="headerIcons flex">
         <li className="userIcon btn greenBtn">
-					<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M12.5 12.5C14.8012 12.5 16.6667 10.6345 16.6667 8.33333C16.6667 6.03214 14.8012 4.16666 12.5 4.16666C10.1989 4.16666 8.33337 6.03214 8.33337 8.33333C8.33337 10.6345 10.1989 12.5 12.5 12.5Z" stroke="white" strokeWidth="2"/>
-						<path d="M4.16663 20.8333C4.16663 16.6667 8.33329 14.5833 12.5 14.5833C16.6666 14.5833 20.8333 16.6667 20.8333 20.8333" stroke="white" strokeWidth="2"/>
-					</svg>
+					<Link href="/login">
+						<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12.5 12.5C14.8012 12.5 16.6667 10.6345 16.6667 8.33333C16.6667 6.03214 14.8012 4.16666 12.5 4.16666C10.1989 4.16666 8.33337 6.03214 8.33337 8.33333C8.33337 10.6345 10.1989 12.5 12.5 12.5Z" stroke="white" strokeWidth="2"/>
+							<path d="M4.16663 20.8333C4.16663 16.6667 8.33329 14.5833 12.5 14.5833C16.6666 14.5833 20.8333 16.6667 20.8333 20.8333" stroke="white" strokeWidth="2"/>
+						</svg>
+					</Link>
 				</li>
         <li>
           <Link href="/cart">

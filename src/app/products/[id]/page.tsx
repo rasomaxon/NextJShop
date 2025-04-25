@@ -17,7 +17,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [mainImage, setMainImage] = useState("");
   const [productImages, setProductImages] = useState<string[]>([]);
-  const discount = 0;
+  const discount = 1.2;
 
   const fetchProduct = async () => {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -85,19 +85,22 @@ export default function ProductPage() {
           </div>
 
           {/* Третья колонка - заказ */}
-          <div className="order-column">
-            <div className="price-row">
-              <span>Цена:</span>
-              <span>{product.price} $</span>
-            </div>
-            {discount > 0 && (
-              <div className="discount-row">
-                <span>Скидка:</span>
-                <span>-{discount} $</span>
-              </div>
-            )}
-            <button className="add-to-cart">Добавить в корзину</button>
-            <button className="buy-now">Купить сейчас</button>
+          <div className="orderColumn">
+						{discount > 0 ? (
+							<div className="discountRow priceRow">
+								<span style={{color:"#1F7D63"}}>{(product.price - discount).toFixed(2)} $</span>
+								<s style={{color:"#A7A7A7"}}>{(product.price).toFixed(2)} $</s>
+							</div>
+						) : 
+							<div className="discountRow priceRow">
+								<span style={{color:"#1F7D63"}}>{(product.price).toFixed(2)} $</span>
+							</div>
+						}
+
+						<div className='flex flex-col'>
+							<button className="greenBtn btn" style={{height: 50, marginBottom: 15}}>Добавить в корзину</button>
+            	<button className="greenBtn btn" style={{height: 50, background:"#CEF4AC", color:"#1F7D63"}}>Купить сейчас</button>
+						</div>
           </div>
         </div>
       </div>
