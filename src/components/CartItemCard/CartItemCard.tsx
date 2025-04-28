@@ -1,4 +1,6 @@
 import Image from "next/image";
+import "../CartItemCard/CartItemCard.scss";
+
 
 type CartItem = {
   id: number;

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 // Импорт хуков React: useState — для хранения данных, useEffect — для запроса данных при загрузке страницы.
 
-import ProductCard from "@/components/ProductCard"; 
+import ProductCard from "@/components/ProductCard/ProductCard"; 
 // Импорт компонента карточки товара. Каждому товару будет соответствовать одна такая карточка.
 // Типизация объекта товара
 type Product = {

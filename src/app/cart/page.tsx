@@ -9,8 +9,8 @@ import {
   decreaseQuantity,
 } from "@/store/slices/cartSlice";
 import Link from "next/link";
-import Header from "@/components/Header";
-import CartItemCard from "@/components/CartItemCard";
+import Header from "@/components/Header/Header";
+import CartItemCard from "@/components/CartItemCard/CartItemCard";
 
 export default function CartPage() {
   const cartItems = useSelector((state: RootState) => state.cart.items);

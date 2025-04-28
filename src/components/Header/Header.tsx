@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import "../Header/Header.scss"
 
 type HeaderProps = {
   searchTerm: string;
@@ -52,9 +53,9 @@ export default function Header({ searchTerm, setSearchTerm }: HeaderProps) {
         />
         <button className="searchBtn btn">
           <svg
-            width="25"
-            height="25"
-            viewBox="0 0 25 25"
+            width="28"
+            height="28"
+            viewBox="0 0 26 26"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >

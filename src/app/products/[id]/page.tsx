@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from 'next/image';
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 
 type Product = {
   id: number;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from 'next/image';
+import "../ProductCard/ProductCard.scss";
 
 type Product = {
   id: number;

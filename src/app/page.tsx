@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, increaseQuantity, decreaseQuantity } from "@/store/slices/cartSlice";
 import { RootState } from "@/store";
-import ProductCard from "@/components/ProductCard";
-import Header from "@/components/Header";
+import ProductCard from "@/components/ProductCard/ProductCard";
+import Header from "@/components/Header/Header";
 import ProductCardSkeleton from "@/components/ProductCardSkeleton";
 
 type Product = {
