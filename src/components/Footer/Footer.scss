@@ -1,0 +1,22 @@
+footer {
+	display: flex;
+	justify-content: space-between;
+	background-color: #D9D9D9;
+	width: 85%;
+	padding: 15px 30px;
+	font-size: 16px;
+}
+
+footer h2 {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+footer span {
+	color: #6D6D6D;
+	cursor: pointer;
+}
+
+footer span:hover {
+	color: #1f7d63;
+}

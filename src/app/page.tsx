@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, increaseQuantity, decreaseQuantity } from "@/store/slices/cartSlice";
 import { RootState } from "@/store";
+import Image from 'next/image';
 import ProductCard from "@/components/ProductCard/ProductCard";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 import ProductCardSkeleton from "@/components/ProductCardSkeleton";
 
 type Product = {
@@ -151,6 +153,7 @@ export default function HomePage() {
 					</div>
 				</div>
       </div>
+			<Footer/>
     </main>
   );
 }

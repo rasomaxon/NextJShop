@@ -51,10 +51,12 @@ export default function LoginPage() {
   return (
     <main className="grid grid-cols-1 xl:grid-cols-2 h-screen">
 			<div className="hidden xl:flex justify-center items-center" style={{ background: "#1f7d63" }}>
-				<Image
-					src={"/images/logo_white.png"}
-					alt={`logo`}
-					width={340} height={395}/>
+				<Link href="\" className='btn'>
+					<Image
+						src={"/images/logo_white.png"}
+						alt={`logo`}
+						width={340} height={395}/>
+				</Link>
 			</div>
 			<div className='flex justify-center items-center'>
 				<form onSubmit={handleSubmit(onSubmit)} className="loginContainer">
@@ -97,7 +99,7 @@ export default function LoginPage() {
 					</button>
 					<p className='flex' style={{gap: 15}}>
 						Ещё нет аккаунта?
-						<Link href="/" className='ref btn'>
+						<Link href="\registration" className='ref btn'>
 							Создайте
 						</Link>
 					</p>

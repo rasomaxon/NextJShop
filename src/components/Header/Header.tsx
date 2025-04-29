@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSelector } from "react-redux";
@@ -17,36 +17,51 @@ export default function Header({ searchTerm, setSearchTerm }: HeaderProps) {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+	const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+	const toggleMenu = () => setMenuOpen((prev) => !prev);
 
-  return (
+	useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+	
+   return (
     <header>
-      <Link href="/" className="logo">
+      <Link href="/" className="cursor-pointer logo">
         <Image src="/images/logo_long.png" width={143} height={50} alt="Logo" />
       </Link>
 
-      <button onClick={() => {}} className="greenBtn btn catalogBtn">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M3 12H15M3 6H21M3 18H21"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-        <p style={{ fontSize: 20 }}>каталог</p>
-      </button>
+      <div onClick={toggleMenu} className="catalogDropdownWrapper catalogBtn greenBtn btn" ref={menuRef}>
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+					<path
+						d="M3 12H15M3 6H21M3 18H21"
+						stroke="white"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+					/>
+				</svg>
+				<p style={{ fontSize: 20 }}>каталог</p>
+
+        {menuOpen && (
+          <div className="dropdownMenu">
+            <Link href="/">Главная</Link>
+            <Link href="/login">Аккаунт</Link>
+            <Link href="/cart">Корзина</Link>
+          </div>
+        )}
+      </div>
 
       <div className="search">
         <input
+					className="searchField"
           type="text"
-          className="searchField"
           placeholder="Поиск..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -92,7 +107,7 @@ export default function Header({ searchTerm, setSearchTerm }: HeaderProps) {
 								<path d="M9.375 22.3958C10.2379 22.3958 10.9375 21.6963 10.9375 20.8333C10.9375 19.9704 10.2379 19.2708 9.375 19.2708C8.51206 19.2708 7.8125 19.9704 7.8125 20.8333C7.8125 21.6963 8.51206 22.3958 9.375 22.3958Z" fill="white"/>
 								<path d="M17.7084 22.3958C18.5713 22.3958 19.2709 21.6963 19.2709 20.8333C19.2709 19.9704 18.5713 19.2708 17.7084 19.2708C16.8454 19.2708 16.1459 19.9704 16.1459 20.8333C16.1459 21.6963 16.8454 22.3958 17.7084 22.3958Z" fill="white"/>
 							</svg>
-							<p>{totalPrice.toFixed(2)} $</p>
+							<p className='cartText'>{totalPrice.toFixed(2)} $</p>
 						</div>
           </Link>
         </li>

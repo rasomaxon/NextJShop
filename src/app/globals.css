@@ -15,15 +15,6 @@ html {
   margin: 0;
   padding: 0;
 }
-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: #cef4ac;
-	width: 85%;
-	height: 88px;
-	padding: 20px 2%;
-}
 
 .greenBtn {
 	background-color: #1f7d63;
@@ -40,7 +31,6 @@ header {
 }
 .btn:hover {
 	filter: brightness(110%);
-	gap: 10px;
 }
 .btn:active {
 	filter: brightness(90%);
@@ -206,6 +196,23 @@ header {
 	object-fit: contain;
 	width: 100%;
 	height: 100%;
+}
+
+.AdvantageCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 28%;
+	gap: 15px;
+	text-align: justify;
+	border-radius: 6px;
+	border: 1px solid #a3a3a3;
+	padding: 15px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	background-color: #ffffff;
+}
+.AdvantageCard p {
+	font-size: 20px;
 }
 
 @media (max-width: 1024px) {
