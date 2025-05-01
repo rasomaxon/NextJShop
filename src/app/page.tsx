@@ -65,7 +65,7 @@ export default function HomePage() {
 
       <div className="mainContent">
         <div className="mainContentFunctions">
-					<h1 className="text-2xl font-bold mb-4" style={{color:"#1f7d63"}}>
+					<h1 className="mainText">
 						{searchTerm.trim()
 							? `Найдено ${filteredAndSortedProducts.length} товаров по запросу: "${searchTerm.trim()}"`
 							: "Все товары"}
@@ -79,8 +79,8 @@ export default function HomePage() {
               }
               className="sortSelect btn"
             >
-              <option value="asc">По возрастанию цены</option>
-              <option value="desc">По убыванию цены</option>
+              <option value="asc">Возрастание цены</option>
+              <option value="desc">Убывание цены</option>
             </select>
             <span className="customArrow" />
           </div>

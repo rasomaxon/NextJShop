@@ -44,13 +44,15 @@ html {
 }
 .mainContent h1 {
 	font-size: 30px;
-	color: #165c48;
-	margin: 15px;
+	font-weight: bold;
+	color: #1f7d63;
+	overflow: hidden;
 }
 .mainContentFunctions {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin: 15px 0;
 }
 
 .customSelectWrapper {
@@ -301,4 +303,26 @@ html {
 }
 .ref {
 	color: #54B4C5;
+}
+
+
+@media (min-width: 360px) and (max-width: 670px) {
+	.mainContent {
+		width: 100%;
+	}
+	.mainContent h1 {
+		font-size: 30px;
+		width: 50%;
+	}
+	.customSelectWrapper {
+		width: 50%;
+	}
+	.sortSelect {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+@media (min-width: 671px) and (max-width: 1024px) {
+
 }
