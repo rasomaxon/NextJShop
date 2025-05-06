@@ -10,6 +10,7 @@ import {
 } from "@/store/slices/cartSlice";
 import Link from "next/link";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 import CartItemCard from "@/components/CartItemCard/CartItemCard";
 
 export default function CartPage() {
@@ -28,7 +29,7 @@ export default function CartPage() {
     <div className="flex flex-col items-center my-10">
       <Header />
       <div className="mainContent">
-        <h1 className="text-2xl font-bold mb-4" style={{color:"#1f7d63"}}>Корзина</h1>
+        <h1 className="titleText">Корзина</h1>
         <div className="cartContent">
           <div className="cartItems">
             <div className="cartBtns flex gap-4" style={{ marginBottom: 15 }}>
@@ -74,7 +75,7 @@ export default function CartPage() {
           </div>
 
           <div className="order">
-            <h1 className="text-2xl font-bold mb-4" style={{color:"#1f7d63"}}>Оформить заказ</h1>
+            <h1 className="titleText">Оформить заказ</h1>
             <div className="orderContent">
               <button className="btn greenBtn" style={{ height: 50 }}>
                 {" "}
@@ -107,6 +108,7 @@ export default function CartPage() {
           </div>
         </div>
       </div>
+			<Footer/>
     </div>
   );
 }

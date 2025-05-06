@@ -107,8 +107,8 @@ export default function HomePage() {
 				</div>
 
 				<div className='ourAdvantages'>
-					<h1 className="text-2xl font-bold mb-4"  style={{color:"#1f7d63"}}>Наши плюсы</h1>
-					<div className='flex justify-around'>
+					<h1 className='titleText'>Наши плюсы</h1>
+					<div className='ourAdvantagesContainer'>
 						<div className='AdvantageCard'>
 							<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M37.5 4.16669H12.5C10.1988 4.16669 8.33334 6.03217 8.33334 8.33335V41.6667C8.33334 43.9679 10.1988 45.8334 12.5 45.8334H37.5C39.8012 45.8334 41.6667 43.9679 41.6667 41.6667V8.33335C41.6667 6.03217 39.8012 4.16669 37.5 4.16669Z" stroke="#1F7D63" stroke-width="1.33333"/>

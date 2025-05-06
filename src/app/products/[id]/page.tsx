@@ -80,7 +80,7 @@ export default function ProductPage() {
 
           {/* Вторая колонка - информация */}
           <div className="info-column">
-            <h1 className="product-title" style={{fontSize:40}}>{product.title}</h1>
+            <h1 className="titleText">{product.title}</h1>
             <p className="product-description">{product.description}</p>
           </div>
 

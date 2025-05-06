@@ -42,7 +42,7 @@ export default function ProductCard({
   return (
     <div className="itemCard">
       <Link href={`/products/${product.id}`} passHref>
-        <div style={{ cursor: 'pointer' }}>
+        <div className='flex flex-col items-center' style={{ cursor: 'pointer' }}>
           <Image
             className="itemCard_img"
             src={product.image}
@@ -50,8 +50,8 @@ export default function ProductCard({
             height={180}
             alt={product.title}
           />
-          <p className="text" style={{ fontSize: 20 }}>{product.price} $</p>
-          <h2 className="text" style={{ fontSize: 12 }}>{product.title}</h2>
+          <p className="text price">{product.price} $</p>
+          <h2 className="text title">{product.title}</h2>
         </div>
       </Link>
 
@@ -62,7 +62,7 @@ export default function ProductCard({
             onAddToCart?.(product);
           }}
           style={{ width: 190, height: 40 }}
-          className="greenBtn btn"
+          className="greenBtn btn cartBtn"
         >
           В корзину
           <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
